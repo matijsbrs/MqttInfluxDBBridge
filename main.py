@@ -48,8 +48,8 @@ MQTT_TOPIC = os.environ.get("MQTT_TOPIC").split(",")
 def on_connect(client, userdata, flags, rc):
     print('Connected with result code ' + str(rc))
     for topic in MQTT_TOPIC:
-        client.subscribe(MQTT_TOPIC)
-        
+        client.subscribe(topic)
+
 
 
 def on_message(client, userdata, msg):
