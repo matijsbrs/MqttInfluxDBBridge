@@ -42,12 +42,14 @@ MQTT_ADDRESS = os.environ.get("MQTT_ADDRESS")
 MQTT_USERNAME = os.environ.get("MQTT_USERNAME")
 MQTT_PASSWORD = os.environ.get("MQTT_PASSWORD")
 MQTT_CLIENT_ID = os.environ.get("MQTT_CLIENT_ID")
-MQTT_TOPIC = os.environ.get("MQTT_TOPIC")
+MQTT_TOPIC = os.environ.get("MQTT_TOPIC").split(",")
 # automation/climatronic/relais/vac24
 
 def on_connect(client, userdata, flags, rc):
     print('Connected with result code ' + str(rc))
-    client.subscribe(MQTT_TOPIC)
+    for topic in MQTT_TOPIC:
+        client.subscribe(MQTT_TOPIC)
+        
 
 
 def on_message(client, userdata, msg):
